@@ -8,7 +8,8 @@ const GameState = Object.freeze({
     ADVENTURE: Symbol("yes"),
     KNOCK: Symbol("knock"),
     NOBEL: Symbol("Nobel"),
-    OK:Symbol("ok")
+    OK: Symbol("ok"),
+    MATH: Symbol("math")
 
 });
 
@@ -80,7 +81,7 @@ module.exports = class Game {
             case GameState.NOBEL:
                 if (sInput.toLowerCase().match("nobel who?")) {
                     sReply = "No Bell.that's why I knocked . I'm done with this game .Let's try something else ,ok? ";
-                   
+
                     this.stateCur = GameState.OK;
                 } else {
                     sReply = "the phone lines are down ... Would you like some toast perhaps?";
@@ -88,6 +89,31 @@ module.exports = class Game {
 
                 }
                 break;
+            case GameState.OK:
+                if (sInput.toLowerCase().match("ok")) {
+                    sReply = "I have a math question for you.2+2? ";
+
+                    this.stateCur = GameState.MATH;
+                } else {
+                    sReply = "the phone lines are down ... Would you like some toast perhaps?";
+                    this.stateCur = GameState.FLAT;
+
+                }
+                break;
+            case GameState.MATH:
+                if (sInput=="4") {
+                    sReply = "you have correct answer ,see you soon !";
+
+                    this.stateCur = GameState.WELCOMING;
+                } else {
+                    sReply = "the phone lines are down ... Would you like some toast perhaps?";
+                    this.stateCur = GameState.FLAT;
+
+                }
+                break;
+
+
+
 
         }
         return ([sReply]);
