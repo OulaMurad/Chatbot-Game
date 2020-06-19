@@ -16,6 +16,7 @@ const GameState = Object.freeze({
 module.exports = class Game {
     constructor() {
         this.stateCur = GameState.WELCOMING;
+        this.nCurrent=0;
     }
 
     makeAMove(sInput) {
@@ -91,9 +92,8 @@ module.exports = class Game {
                 break;
             case GameState.OK:
                 if (sInput.toLowerCase().match("ok")) {
-                    sReply = "I have a math question for you.2+2? ";
-
-                    this.stateCur = GameState.MATH;
+                    sReply = "I have a math question for you,2+2? ";
+                     this.stateCur = GameState.MATH;
                 } else {
                     sReply = "the phone lines are down ... Would you like some toast perhaps?";
                     this.stateCur = GameState.FLAT;
@@ -102,11 +102,11 @@ module.exports = class Game {
                 break;
             case GameState.MATH:
                 if (sInput=="4") {
-                    sReply = "you have correct answer ,see you soon !";
+                    sReply = "you have correct answer ,now your turn to ask!";
 
                     this.stateCur = GameState.WELCOMING;
                 } else {
-                    sReply = "the phone lines are down ... Would you like some toast perhaps?";
+                 sReply= "wrong  ... the correct answer is 4. whoohoo ! I win";
                     this.stateCur = GameState.FLAT;
 
                 }
@@ -118,4 +118,5 @@ module.exports = class Game {
         }
         return ([sReply]);
     }
+    
 }
