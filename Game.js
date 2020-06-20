@@ -57,7 +57,7 @@ module.exports = class Game {
 
                     this.stateCur = GameState.OK;
                 } else {
-                    sReply = "would you like something else?";
+                    sReply = "I think you made a typo please correct it to continue or you might want something else,type yes to restart the game please?";
                     this.stateCur = GameState.ADVENTURE;
 
                 }
@@ -67,7 +67,7 @@ module.exports = class Game {
                     sReply = "let us try this game , I'll ask you simple math questions and count the correct answers for you .At the end I'll tell you how many times you won let us get started! are you ready?if yes type yes please ";
                     this.stateCur = GameState.YES;
                 } else {
-                    sReply = "would you like something else?";
+                    sReply = "I think you made a typo please correct it to continue or you might want something else,type yes to restart the game please?";
                     this.stateCur = GameState.ADVENTURE;
 
                 }
@@ -78,7 +78,7 @@ module.exports = class Game {
 
                     this.stateCur = GameState.EASY;
                 } else {
-                    sReply = "would you like something else";
+                    sReply = "I think you made a typo please correct it to continue or you might want something else,type yes to restart the game please?";
                     this.stateCur = GameState.ADVENTURE;
 
                 }
