@@ -13,6 +13,7 @@ const GameState = Object.freeze({
     HARDER: Symbol("harder"),
     END: Symbol("yes")
 });
+const answers = ["2,3,4"];
 
 module.exports = class Game {
     constructor() {
@@ -51,7 +52,7 @@ module.exports = class Game {
                 break;
             case GameState.NOBEL:
                 if (sInput.toLowerCase().match("nobel who?")) {
-                    sReply = "No Bell.that's why I knocked . I'm done with this game .Let's try something else ,ok? ";
+                    sReply = "No Bell.that's why I knocked . I'm done with this game .Let's try something else ,if yes press ok please? ";
 
                     this.stateCur = GameState.OK;
                 } else {
@@ -62,7 +63,7 @@ module.exports = class Game {
                 break;
             case GameState.OK:
                 if (sInput.toLowerCase().match("ok")) {
-                    sReply = "let us try this game , I'll ask you simple math questions and count the correct answers for you .At the end I'll tell you how many times you won let us get started! are you ready? ";
+                    sReply = "let us try this game , I'll ask you simple math questions and count the correct answers for you .At the end I'll tell you how many times you won let us get started! are you ready?if yes type yes please ";
                     this.stateCur = GameState.YES;
                 } else {
                     sReply = "would you like something else?";
@@ -72,7 +73,7 @@ module.exports = class Game {
                 break;
             case GameState.YES:
                 if (sInput.toLowerCase().match("yes")) {
-                    sReply = "2+2?";
+                    sReply = "2+2= 2,3, or 4?";
 
                     this.stateCur = GameState.EASY;
                 } else {
@@ -82,15 +83,18 @@ module.exports = class Game {
                 }
                 break;
             case GameState.EASY:
-                if (sInput == "4") {
-                    this.nPersonwins++;
-                    sReply = "you got it right! ,I know it was easy, now How about this one, What is the half of quarter of 8000";
-                    this.stateCur = GameState.MOREEASY;
-                } else {
-                    sReply = "wrong  ... the correct answer is 4.  now here is a tough one,  What is the half of quarter of 8000 ";
-                    this.stateCur = GameState.MOREEASY;
+                for (var i = 0; i < answers.length; i++) {
+                    if (sInput == "4") {
+                        this.nPersonwins++;
+                        sReply = "you got it right! ,I know it was easy, now How about this one, What is the half of quarter of 8000";
+                        this.stateCur = GameState.MOREEASY;
+                    } else {
+                        sReply = "wrong  ... the correct answer is 4.  now here is a tough one,  What is the half of quarter of 8000 ";
+                        this.stateCur = GameState.MOREEASY;
 
+                    }
                 }
+
                 break;
             case GameState.MOREEASY:
                 if (sInput == "1000") {
