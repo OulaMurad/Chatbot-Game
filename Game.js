@@ -47,7 +47,7 @@ module.exports = class Game {
                     sReply = "Nobel";
                     this.stateCur = GameState.NOBEL;
                 } else {
-                    sReply = " would you like something else?";
+                    sReply = "I think you made a typo please correct it to continue or you might want something else,type yes to restart the game please?";
                     this.stateCur = GameState.ADVENTURE;
                 }
                 break;
