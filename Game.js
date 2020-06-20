@@ -14,6 +14,7 @@ const GameState = Object.freeze({
     END: Symbol("yes")
 });
 const answers = ["2,3,4"];
+const answers1 = ["1000,2000,4000"];
 
 module.exports = class Game {
     constructor() {
@@ -86,10 +87,10 @@ module.exports = class Game {
                 for (var i = 0; i < answers.length; i++) {
                     if (sInput == "4") {
                         this.nPersonwins++;
-                        sReply = "you got it right! ,I know it was easy, now How about this one, What is the half of quarter of 8000";
+                        sReply = "you got it right! ,I know it was easy, now How about this one, What is the half of quarter of 8000?2000,1000,or 4000? ";
                         this.stateCur = GameState.MOREEASY;
                     } else {
-                        sReply = "wrong  ... the correct answer is 4.  now here is a tough one,  What is the half of quarter of 8000 ";
+                        sReply = "wrong  ... the correct answer is 4.  now here is a tough one,  What is the half of quarter of 8000 ? 2000,1000,or 4000? ";
                         this.stateCur = GameState.MOREEASY;
 
                     }
@@ -97,15 +98,20 @@ module.exports = class Game {
 
                 break;
             case GameState.MOREEASY:
-                if (sInput == "1000") {
-                    this.nPersonwins++;
-                    sReply = "you got it right! ,I know it was easy too, now here is a tough one, What is the math symbols missing in this problem:7  3  7  3= 24?";
-                    this.stateCur = GameState.MATH;
-                } else {
-                    sReply = "wrong  ... the correct answer is 1000.  now here is a tough one,  What is the math symbols missing in this problem:7  3  7  3= 24? ";
-                    this.stateCur = GameState.MATH;
+                let j = 0;
+                while (j < answers1.length) {
+                    if (sInput == "1000") {
+                        this.nPersonwins++;
+                        sReply = "you got it right! ,I know it was easy too, now here is a tough one, What is the math symbols missing in this problem:7  3  7  3= 24?";
+                        this.stateCur = GameState.MATH;
+                    } else {
+                        sReply = "wrong  ... the correct answer is 1000.  now here is a tough one,  What is the math symbols missing in this problem:7  3  7  3= 24? ";
+                        this.stateCur = GameState.MATH;
 
+                    }
+                    j++;
                 }
+
                 break;
             case GameState.MATH:
                 if (sInput == "7*((3/7)+3)") {
@@ -144,11 +150,11 @@ module.exports = class Game {
             case GameState.HARDER:
                 if (sInput == "545+5+5") {
                     this.nPersonwins++;
-                    sReply = `WOW !you are so smart !you got the  correct answer, you won:${this.nPersonwins} times,would you like to finish this game?`;
+                    sReply = `WOW !you are so smart !you got the  correct answer, you won:${this.nPersonwins} times,would you like to finish this game?,if yes please type yesplease`;
 
                     this.stateCur = GameState.END;
                 } else {
-                    sReply = `Wrong  ... you have to change +  to number 4, so the correct answer is 545+5+5.Hard luck!you won:${this.nPersonwins} times, would you like to finish this game?`;
+                    sReply = `Wrong  ... you have to change +  to number 4, so the correct answer is 545+5+5.Hard luck!you won:${this.nPersonwins} times, would you like to finish this game?,if yes type yes please`;
                     this.stateCur = GameState.END;
 
                 }
