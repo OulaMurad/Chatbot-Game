@@ -5,8 +5,11 @@ const GameState = Object.freeze({
     NOBEL: Symbol("Nobel"),
     OK: Symbol("ok"),
     YES: Symbol("yes"),
+    EASY:Symbol("easy"),
+    MOREEASY:Symbol("moreeasy"),
     MATH: Symbol("math"),
-    HARD: Symbol("hard"),
+    MOREMATH:Symbol("moremath"),
+     HARD: Symbol("hard"),
     HARDER:Symbol("harder")
 });
 
@@ -70,32 +73,65 @@ module.exports = class Game {
                 if (sInput.toLowerCase().match("yes")) {
                     sReply = "2+2?";
 
-                    this.stateCur = GameState.MATH;
+                    this.stateCur = GameState.EASY;
                 } else {
                     sReply = "would you like something else";
                     this.stateCur = GameState.ADVENTURE;
 
                 }
                 break;
-            case GameState.MATH:
+            case GameState.EASY:
                 if (sInput == "4") {
                     this.nPersonwins++;
-                    sReply = "you got it right! ,I know it was easy, now here is a tough one, can you make this math problen right with only one move,8+8=91 ?";
-                    this.stateCur = GameState.HARD;
+                    sReply = "you got it right! ,I know it was easy, now How about this one, What is the half of quarter of 8000";
+                    this.stateCur = GameState.MOREEASY;
                 } else {
-                    sReply = "wrong  ... the correct answer is 4.  now here is a tough one, can you make this math problen right with only one move,8+8=91 ";
-                    this.stateCur = GameState.HARD;
+                    sReply = "wrong  ... the correct answer is 4.  now here is a tough one,  What is the half of quarter of 8000 ";
+                    this.stateCur = GameState.MOREEASY;
 
                 }
                 break;
+                case GameState.MOREEASY:
+                    if (sInput == "1000") {
+                        this.nPersonwins++;
+                        sReply = "you got it right! ,I know it was easy too, now here is a tough one, What is the math symbols missing in this problem:7  3  7  3= 24?";
+                        this.stateCur = GameState.MATH;
+                    } else {
+                        sReply = "wrong  ... the correct answer is 1000.  now here is a tough one,  What is the math symbols missing in this problem:7  3  7  3= 24? ";
+                        this.stateCur = GameState.MATH;
+    
+                    }
+                    break;
+                case GameState.MATH:
+                    if (sInput == "7*((3/7)+3)") {
+                        this.nPersonwins++;
+                        sReply = "you got it right! ,good job!, now here is a tough one, can you solve this: 7+7/7+7*7-7 ?";
+                        this.stateCur = GameState.MOREMATH;
+                    } else {
+                        sReply = "wrong  ... the correct answer is 7*((3/7)+3).  now here is a tough one, can you solve this:7+7/7+7*7-7 ";
+                        this.stateCur = GameState.MOREMATH;
+    
+                    }
+                    break;
+                    case GameState.MOREMATH:
+                        if (sInput == "50") {
+                            this.nPersonwins++;
+                            sReply = "you got it right! ,good job!, now here is a another one, can you make this math problen right with only one move,8+8=91 ?";
+                            this.stateCur = GameState.HARD;
+                        } else {
+                            sReply = "No  ... the correct answer is 50.  now here is a another one, can you make this math problen right with only one move,8+8=91 ";
+                            this.stateCur = GameState.HARD;
+        
+                        }
+                        break;
             case GameState.HARD:
                 if (sInput == "16=8+8") {
                     this.nPersonwins++;
-                    sReply = `WOW !you are so smart !you got the  correct answer,let's try something silly ,how about change on thing to make this problem right :5+5+5+5=555`;
+                    sReply = `WOW !you are so smart !you got the  correct answer,let's try something silly ,how about change one thing to make this problem right :5+5+5+5=555`;
 
                     this.stateCur = GameState.HARDER;
                 } else {
-                    sReply = "Wrong  ... the correct answer is 16=8+8. You lost! let's try something silly ,how about change on thing to make this problem right :5+5+5+5=555";
+                    sReply = "Wrong  ... the correct answer is 16=8+8. You lost! let's try something silly ,how about change one thing to make this problem right :5+5+5+5=555";
                     this.stateCur = GameState.HARDER;
 
                 }
