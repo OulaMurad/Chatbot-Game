@@ -6,13 +6,15 @@ const GameState = Object.freeze({
     OK: Symbol("ok"),
     YES: Symbol("yes"),
     MATH: Symbol("math"),
-    HARD: Symbol("hard")
+    HARD: Symbol("hard"),
+    HARDER:Symbol("harder")
 });
 
 module.exports = class Game {
     constructor() {
         this.stateCur = GameState.WELCOMING;
         this.nCurrent = 0;
+        this.nPersonwins = 0;
     }
 
     makeAMove(sInput) {
@@ -31,6 +33,7 @@ module.exports = class Game {
                     this.stateCur = GameState.KNOCK;
                 } else {
                     sReply = "would you like something else?";
+                    this.stateCur = GameState.ADVENTURE;
                 }
                 break;
             case GameState.KNOCK:
@@ -39,6 +42,7 @@ module.exports = class Game {
                     this.stateCur = GameState.NOBEL;
                 } else {
                     sReply = " would you like something else?";
+                    this.stateCur = GameState.ADVENTURE;
                 }
                 break;
             case GameState.NOBEL:
@@ -75,22 +79,35 @@ module.exports = class Game {
                 break;
             case GameState.MATH:
                 if (sInput == "4") {
-                    sReply = "you have correct answer ,now this is the hard one can you make this math problen right ,8+8=91 ?";
-
+                    this.nPersonwins++;
+                    sReply = "you got it right! ,I know it was easy, now here is a tough one, can you make this math problen right with only one move,8+8=91 ?";
                     this.stateCur = GameState.HARD;
                 } else {
-                    sReply = "wrong  ... the correct answer is 4. whoohoo ! I win";
-                    this.stateCur = GameState.ADVENTURE;
+                    sReply = "wrong  ... the correct answer is 4.  now here is a tough one, can you make this math problen right with only one move,8+8=91 ";
+                    this.stateCur = GameState.HARD;
 
                 }
                 break;
             case GameState.HARD:
                 if (sInput == "16=8+8") {
-                    sReply = "WOW !you are so smart !you have correct answer ,now this is the hard one can you make this math problen right ,8+8=91 ?";
+                    this.nPersonwins++;
+                    sReply = `WOW !you are so smart !you got the  correct answer,let's try something silly ,how about change on thing to make this problem right :5+5+5+5=555`;
+
+                    this.stateCur = GameState.HARDER;
+                } else {
+                    sReply = "Wrong  ... the correct answer is 16=8+8. You lost! let's try something silly ,how about change on thing to make this problem right :5+5+5+5=555";
+                    this.stateCur = GameState.HARDER;
+
+                }
+                break;
+            case GameState.HARDER:
+                if (sInput == "545+5+5") {
+                    this.nPersonwins++;
+                    sReply = `WOW !you are so smart !you got the  correct answer, you won:${this.nPersonwins} times`;
 
                     this.stateCur = GameState.WELCOMING;
                 } else {
-                    sReply = "wrong  ... the correct answer is 16=8+8. whoohoo ! I win";
+                    sReply = `Wrong  ... you have to change +  to number 4, so the correct answer is 545+5+5.Hard luck!you won:${this.nPersonwins} times`;
                     this.stateCur = GameState.ADVENTURE;
 
                 }
@@ -100,5 +117,6 @@ module.exports = class Game {
 
 
         return ([sReply]);
+
     }
 }
