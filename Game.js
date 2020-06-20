@@ -163,7 +163,7 @@ module.exports = class Game {
                 if (sInput.toLowerCase().match("yes")) {
                     sReply = "see you soon ,Bye!";
                 } else {
-                    sReply = "Welcome back!";
+                    sReply = "Welcome back!say hi!";
                     this.stateCur = GameState.WELCOMING;
 
                 }
