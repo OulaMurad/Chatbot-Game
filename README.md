@@ -1,20 +1,17 @@
-# <a href="https://github.com/rhildred/es6-twilio-chatbot" target="_blank">es6-twilio-chatbot</a>
 
-I got the user interface for the web from a student of mine, Pat Wilken.
+Hi,
+My name is Oula Murad!
 
 A chatbot written in es6 and vs6 for twilio and testing on the web. The important files are index.js and game.js.
 
-A popular theme for the upcoming Halloween holiday is to make haunted house simulations. You will make a choose your own adventure for a haunted house presented as a Twilio chatbot. 
+I  made  My own adventure to create my game . 
+It's a game of 2 players
+the computer is one of 2 player and he will ask questions and count the correct answers for you 
+at the end of the game you will see you score and you have to follow the rules of answeres 
+The game starts with easy questions and getting harder 
+Googluck!
 
-Marking
------
 
-|Element|Out Of|
-|---|---|
-|get a game or choose your own adventure in es6| 60|
-|count case and if statements|2/3 each up to 20 points|
-|spelling and grammar|10|
-|on time|10|
 
 
 
