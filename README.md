@@ -12,10 +12,10 @@ The game starts with easy questions and getting harder
 Googluck!
 
 
-To run the game you need to login in Heroku 
-It should be working with asking to log in but just in case here is the 
-username:Omurad4056@conestogac.on.ca
-password:oulamurad@2020
+I run the game in Heroku 
+It should be working from the html link  without  asking to log in but just in case:
+Username:Omurad4056@conestogac.on.ca
+Password:oulamurad@2020
 ## License & copyright
 Licensed under the [MIT License](LICENSE)
 
